@@ -35,7 +35,7 @@ function App() {
       );
       setStoredValue(updatedTodos);
     },
-    [setStoredValue]
+    [setStoredValue, storedValue]
   );
 
   const clearCompleted = () => {
