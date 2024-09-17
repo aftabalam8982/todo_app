@@ -1,12 +1,30 @@
-import React from "react";
+import React, { useContext } from "react";
 import { List } from "@mui/material";
 import TodoItem from "./TodoItem";
+import { TodoContext } from "../App";
 
-const TodoList = ({ todos, toggleComplete, editTodo }) => {
-  console.log("TodoList Render");
+const TodoList = () => {
+  const { storedValue, setStoredValue } = useContext(TodoContext);
+
+  console.log("TodoList Render", storedValue);
+
+  const toggleComplete = (index) => {
+    const updatedTodos = storedValue.map((todo, i) =>
+      i === index ? { ...todo, completed: !todo.completed } : todo
+    );
+    setStoredValue(updatedTodos);
+  };
+
+  const editTodo = (index, newTitle) => {
+    const updatedTodos = storedValue.map((todo, i) =>
+      i === index ? { ...todo, title: newTitle } : todo
+    );
+    setStoredValue(updatedTodos);
+  };
+
   return (
     <List style={{ backgroundColor: "#c5e1a5", marginBottom: "1rem" }}>
-      {todos.map((todo, index) => (
+      {storedValue.map((todo, index) => (
         <TodoItem
           key={index}
           todo={todo}

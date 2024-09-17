@@ -1,8 +1,20 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import { TextField, Button, Box } from "@mui/material";
+import { TodoContext } from "../App";
 
-const TodoForm = ({ newTodo, setNewTodo, addTodo }) => {
-  console.log("Todo Form Render");
+const TodoForm = () => {
+  const { storedValue, setStoredValue } = useContext(TodoContext);
+  const [newTodo, setNewTodo] = useState("");
+
+  console.log("Todo Form Render", storedValue);
+
+  const addTodo = () => {
+    if (newTodo.trim()) {
+      setStoredValue([...storedValue, { title: newTodo, completed: false }]);
+      setNewTodo("");
+    }
+  };
+
   return (
     <Box display='flex' justifyContent='space-between' mb={3}>
       <TextField
