@@ -5,9 +5,10 @@ import useLocalStorage from "./components/hooks/useLocalStorage";
 export const TodoContext = createContext();
 
 function App() {
-  const [storedValue, setStoredValue] = useLocalStorage("todo", []);
+  const [storeValue, setStoreValue] = useLocalStorage("todo", []);
+
   return (
-    <TodoContext.Provider value={{ storedValue, setStoredValue }}>
+    <TodoContext.Provider value={{ storeValue, setStoreValue }}>
       <Todo />
     </TodoContext.Provider>
   );
