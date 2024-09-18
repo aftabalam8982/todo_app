@@ -1,12 +1,12 @@
-import React, { useState } from "react";
+import React, { memo, useState } from "react";
 import { ListItem, Checkbox, TextField, Typography, Box } from "@mui/material";
 
 const TodoItem = ({ todo, toggleComplete, editTodo }) => {
   const [isEditing, setIsEditing] = useState(false);
-  const [newTitle, setNewTitle] = useState(todo.title);
-  console.log("TodoItem Render");
+  const [newTitle, setNewTitle] = useState("");
   const handleDoubleClick = () => {
     setIsEditing(true);
+    setNewTitle(todo.title);
   };
 
   const handleBlur = () => {
@@ -47,4 +47,4 @@ const TodoItem = ({ todo, toggleComplete, editTodo }) => {
   );
 };
 
-export default TodoItem;
+export default memo(TodoItem);
